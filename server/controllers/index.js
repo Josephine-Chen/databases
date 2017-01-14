@@ -3,18 +3,18 @@ var models = require('../models');
 module.exports = {
   messages: {
     get: function (req, res) {
-    	console.log('controller here');
-      models.messages.get(function(data){
-      	res.json(data);
+      models.messages.get(function(data) {
+        //data.results = data;
+        res.json(data);
       });
     }, // a function which handles a get request for all messages
 
     post: function (req, res) {
-    	var message = req.body;
-      console.log('body', message);
-    	models.messages.post(message, function() {
-    		res.send('success');
-    	});
+      var message = req.body;
+      console.log('body', req.body);
+      models.messages.post(message, function() {
+        res.json(message);
+      });
     } // a function which handles posting a message to the database
   },
 

@@ -31,8 +31,7 @@ var app = {
     app.$roomSelect.on('change', app.handleRoomChange);
     app.$chats.on('click', '.username', app.handleUsernameClick);
 
-    app.startSpinner();
-    app.fetch(false);
+    //app.fetch(false);
 
     //Look for new messages!
     setInterval(function() {
@@ -48,12 +47,13 @@ var app = {
   },
 
   send: function(message) {
-    app.startSpinner();
+    console.log('message', message);
     $.ajax({
       type: 'POST',
       url: app.server,
       data: JSON.stringify(message),
       success: function(data) {
+        console.log('data in chatterbox client', data);
         //Clear message input
         app.$message.val('');
 
@@ -72,6 +72,7 @@ var app = {
       data: { order: '-createdAt' },
       //dataType: 'json',
       success: function(data) {
+        console.log('data in get', data);
         //send the data.results to another function
         //send it to the render messsage function
 
@@ -106,7 +107,6 @@ var app = {
   renderMessages: function(messages, animate) {
     //Clear old messages
     app.clearMessages();
-    app.stopSpinner();
 
     if (Array.isArray(messages)) {
       // Add all fetched messages that are in our current room
@@ -205,7 +205,6 @@ var app = {
         app.$roomSelect.val(roomname);
       }
     } else {
-      app.startSpinner();
       //change to existing room
       app.roomname = app.$roomSelect.val();
     }
@@ -261,18 +260,3 @@ var app = {
   //   console.log(window.location.search);
   //   return window.location.search.split('=')[2];},
 };
-
-// (function() {
-//   $(document).ready(function() {
-//     app.fetch();
-//     $('#main .username').on('click', function() {
-//       app.handleUsernameClick();
-//     });
-//     $('#send').on('submit',  function() {
-//       var newMessage = $('#send').serializeArray()[0];
-//       app.handleSubmit(newMessage.value);
-
-
-//     });
-//   }
-//   )}())

@@ -83,64 +83,45 @@ form input[type=text] {
     padding: 10px;
 }
 
-.friend {
-    color: #fff;
-    background-color: #0090da;
-}
-
-/* Dropdown Button */
-.dropbtn {
-    background-color: #2196F3;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
+.user {
+    color: gray;
+    font-size: 14px;
+    font-style: italic;
     cursor: pointer;
 }
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #03A9F4;
+.text {
+    text-indent: 20px;
+    padding-bottom: 15px;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
+button {
+    background-color: midnightblue;
+    padding: 5px 25px;
+    color: white;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+#roomSelect {
+    height: 27px;
+    margin-bottom: 5px;
 }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
+#newChatBox {
+    height: 23px;
     display: block;
+    width: 250px;
+    margin-top: 20px;
 }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-
-.roomSelect {
-    padding: 5px;
+#submitMessage {
+    margin-top: 4px;
+    margin-left: 80px;
 }
 
-#messages {
-    border-style: solid;
-    border-width: 5px;
-    border-color: rgb(216, 219, 220);
-    padding: 5px;
-    margin: 2px;
-    background-color: aliceblue;
+.friend {
+    font-weight: bold;
+}
+
+#fetchButton {
+  margin: 10px 0;
 }
