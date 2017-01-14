@@ -22,7 +22,7 @@ describe('Persistent Node Chat Server', function() {
      * (or repeated runs of the tests) won't screw each other up: */
     tablenames.forEach(table=> {
       dbConnection.query('truncate ' + table, done);
-    })
+    });
   });
 
   afterEach(function() {

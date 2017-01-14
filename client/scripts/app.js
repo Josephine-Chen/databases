@@ -73,27 +73,21 @@ var app = {
       //dataType: 'json',
       success: function(data) {
         console.log('data in get', data);
-        //send the data.results to another function
-        //send it to the render messsage function
-
-        // app.renderRoom(data.results);
-        // app.renderMessage(data.results);
-
         //Don't do anything if no messages
-        if (!data.results || !data.results.length) { return; }
+        if (!data || !data.length) { return; }
 
         //Store messages for caching later
-        app.messages = data.results;
+        app.messages = data;
 
-        var mostRecentMessage = data.results[data.results.length - 1];
+        var mostRecentMessage = data[data.length - 1];
         //Only update DOM if there are new messages
-        if (mostRecentMessage.objectId !== app.lastMessageId) {
+        if (mostRecentMessage.id !== app.lastMessageId) {
           //Update UI with fetched rooms
-          app.renderRoomList(data.results);
+          app.renderRoomList(data);
           //Update UI with fetched messages
-          app.renderMessages(data.results, animate);
+          app.renderMessages(data, animate);
           //Store ID of most recent message
-          app.lastMessageId = mostRecentMessage.objectID;
+          app.lastMessageId = mostRecentMessage.id;
 
         }
       },
