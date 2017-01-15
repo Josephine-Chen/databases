@@ -42,14 +42,12 @@ module.exports = {
         });
     },
     post: function (req, res) {
-      console.log('req body', req.body);
       db.User.findOrCreate({where: {username: req.body.username}})
         // findOrCreate returns multiple results in an array
         // use spread to assign the array to function arguments
         .spread(function(user, created) {
-          //console.log('inside spread user', user)
           db.Message.create({
-            userid: user.get('id'),
+            UserId: user.get('id'),
             text: req.body.message,
             roomname: req.body.roomname
           }).then(function(message) {
@@ -68,7 +66,7 @@ module.exports = {
     },
     post: function (req, res) {
       db.User.findOrCreate({where: {username: req.body.username}})
-        // findOrCreate returns multiple resutls in an array
+        // findOrCreate returns multiple results in an array
         // use spread to assign the array to function arguments
         .spread(function(user, created) {
           res.sendStatus(created ? 201 : 200);

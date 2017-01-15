@@ -51,7 +51,9 @@ var app = {
     $.ajax({
       type: 'POST',
       url: app.server,
+      dataType: 'json',
       data: JSON.stringify(message),
+      contentType: 'application/json',
       success: function(data) {
         console.log('data in chatterbox client', data);
         //Clear message input
@@ -120,9 +122,7 @@ var app = {
   },
 
   renderMessage: function(message) {
-    // for (var i = 0; i < message.length; i++) {
-    //   $('#chats').append('<div id = "messages"><text class = "username">' + message[i].username + ':</text><br></br>' + message[i].text + '</div>');
-    // }
+    console.log('message in renderMessage', message);
     //Default roomname
     if (!message.roomname) {
       message.roomname = 'lobby';
@@ -131,13 +131,14 @@ var app = {
     var $chat = $('<div class="chat"/>');
     //Add in the message data and store user in element's data attr
     var $username = $('<span class="username"/>');
+    console.log("User.username", message.User.username);
     $username
-      .text(message.username + ': ')
-      .attr('data-username', message.username)
+      .text(message.User.username + ': ')
+      .attr('data-username', message.User.username)
       .appendTo($chat);
 
     //Add friend class
-    if (app.friends[message.username] === true) {
+    if (app.friends[message.User.username] === true) {
       $username.addClass('friend');
     }
 
@@ -167,15 +168,6 @@ var app = {
     app.$roomSelect.val(app.roomname);
   },
   renderRoom: function(roomname) {
-    // $('#roomSelect').append('<div>' + room + '</div>');
-    // var roomList = [];
-    // for (var i = 0; i < room.length; i++) {
-    //   if (roomList.indexOf(room[i].roomname) === -1) {
-    //     roomList.push(room[i].roomname);
-    //     $('#myDropdown').append('<div id = '+room[i].roomname +' class = "roomSelect">' + room[i].roomname + '</div>');
-    //   }
-    // }
-    //app.fetch();
     //ESCAPE! Prevent XSS by escaping with DOM methods
     var $option = $('<option/>').val(roomname).text(roomname);
 
@@ -232,7 +224,7 @@ var app = {
     // app.send(submission);
     var message = {
       username: app.username,
-      text: app.$message.val(),
+      message: app.$message.val(),
       roomname: app.roomname || 'lobby',
     };
     app.send(message);
