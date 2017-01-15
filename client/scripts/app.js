@@ -131,7 +131,7 @@ var app = {
     var $chat = $('<div class="chat"/>');
     //Add in the message data and store user in element's data attr
     var $username = $('<span class="username"/>');
-    console.log("User.username", message.User.username);
+    console.log('User.username', message.User.username);
     $username
       .text(message.User.username + ': ')
       .attr('data-username', message.User.username)
