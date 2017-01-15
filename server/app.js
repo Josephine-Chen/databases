@@ -1,5 +1,6 @@
 var express = require('express');
-var db = require('./db').link;
+//var db = require('./db').link;
+var db = require('./db');
 
 // Middleware
 var morgan = require('morgan');
@@ -17,12 +18,12 @@ app.set('port', 3000);
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(parser.json());
-app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   next();
+// });
 
-db.connect();
+//db.connect();
 
 // Set up our routes
 app.use('/classes', router);
